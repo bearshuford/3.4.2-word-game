@@ -127,7 +127,7 @@ window.onload = function () {
          var full = document.getElementById(id);
          document.getElementById(id).classList.add('fullscreen');
 
-         if(id === 'lose'){
+         if(id === 'lose'){   // reveal unguessed letters
             for(var i=0; i<word.length; i++) {
                if(letter[i].innerHTML === '_') {
                   letter[i].innerHTML = word[i];
@@ -166,12 +166,10 @@ window.onload = function () {
    };
 
 
-
    var makeGuess = function() {
       addGuessed(guess);
 
-      // if the guess is good
-      if(word.includes(guess)){
+      if(word.includes(guess)){     // if the guess is good
          for(var i=0; i<word.length; i++){
             if(guess === word[i]){
                letter[i].innerHTML = guess;
@@ -182,8 +180,8 @@ window.onload = function () {
             fullScreen('win');
          }
       }
-      // else the guess is bad
-      else {
+
+      else {      // else the guess is bad
          error.play();
          lives--;
          turnHolder.innerHTML = 'Turns: ' + lives;
@@ -194,10 +192,10 @@ window.onload = function () {
       resetGuess();
    };
 
+
    document.addEventListener('keydown', function(e){
 
       returnIcon.classList.remove('prompt');
-
       clearTimeout(promptTimer);
 
       if(e.keyCode > 64 && e.keyCode < 90) { // if letter
@@ -207,24 +205,21 @@ window.onload = function () {
          guessHolder.classList.remove('duplicate');
          promptTimer = setTimeout(function(){
             returnIcon.classList.add('prompt');
-         }, 2500);
+         }, 2000);
       }
-      else if(e.keyCode == 8) {  // if 'delete'
+      else if(e.keyCode == 8) {   // if 'delete'
          resetGuess();
       }
-      else if(e.keyCode == 13) { // if 'enter'
-         if(lettersGuessed.includes(guess)){
+      else if(e.keyCode == 13) {  // if 'enter'
+         if(lettersGuessed.includes(guess)){ // if already guessed
             showDuplicate();
          }
-         else if (guess == ''){
+         else if (guess == ''){   // if no guess – can indicate bad guess
             resetGuess();
          }
          else {
             makeGuess();
          }
-      }
-      else {
-         // TODO: display message to type valid character?
       }
    });
 
