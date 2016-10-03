@@ -1,0 +1,195 @@
+*{
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   font-family: 'Inconsolata', monospace;
+}
+
+
+#word {
+   width: 100%;
+   margin-top: 72px;
+   margin-bottom: 48px;
+   ul{
+      display: flex;
+      justify-content: center;
+      width: 50%;
+      list-style: none;
+      margin: 0 auto;
+      li{
+         display: inline-block;
+         font-size: 120px;
+         font-family: 'Inconsolata', monospace;
+         margin: 0 8px;
+      }
+      li.missed {
+         color: #FF4136;
+      }
+   }
+}
+
+#guess {
+   width: 100%;
+   height: 100px;
+   line-height: 100px; // vertical center when line-heigh = height
+
+   text-align: center;
+   font-size: 180px;
+   text-transform: lowercase;
+
+   //  instructions wrap tweak
+   @media(max-width: 518px) {
+      line-height: 50px;
+   }
+
+}
+
+#guess.instructions {
+   opacity: .5;
+   font-weight: 200;
+   font-size: 24px;
+   font-family: 'Open Sans', sans-serif;
+}
+
+#guess.duplicate {
+   color: #FF4136;
+   font-weight: 200;
+   font-size: 24px;
+   font-family: 'Open Sans', sans-serif;
+}
+
+// https://dusted.codes/making-font-awesome-awesome-using-icons-without-i-tags
+// TODO: show a symbol to remind user to type 'enter'
+
+
+
+#turns {
+   position: fixed;
+   top:0;
+   right:0;
+   width:100%;
+   text-align: right;
+   text-transform: lowercase;
+   font-size: 32px;
+   height:40px;
+   padding: 8px 16px;
+   font-family: 'Open Sans', sans-serif;
+}
+#turns.bg-lose{
+   background-color: #FF4136;
+}
+#turns.bg-win{
+   background-color:  #01FF70;
+}
+
+
+#guessed {
+   position: fixed;
+   width: 100%;
+   bottom:0;
+   h2{
+      text-align: center;
+      font-weight: 400;
+   }
+
+   #guessed-list {
+      display: flex;
+      height: 72px;
+      margin: 0 auto;
+      justify-content: center;
+      align-items: flex-end;
+      align-content: flex-end;
+      background-color: white;
+
+      .letter-guessed {
+         font-size: 56px;
+         margin: 12px 4px;
+      }
+   }
+}
+
+#win, #lose {
+   display: none;
+}
+
+.fullscreen {
+  display: block    !important;
+  position: fixed;
+  top: 200px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: 5;
+  background-color: #FF4136;
+  border: 20px solid transparent;
+  text-align: center;
+ text-transform: uppercase;
+ font-family: 'Open Sans', sans-serif;
+
+   h1{
+      margin-top: 16px;
+      margin-bottom:16px;
+      font-size: 10vw;
+      font-weight: 300;
+   }
+   .reset-button{
+      margin: 0 auto;
+      width: 154px;
+      border: 6px solid #111111;
+      border-radius: 3px;
+      padding: 16px;
+      background-color: #111111;
+      color: #FF4136;
+      z-index: 10;
+
+      cursor: pointer;
+      h3{
+         font-size: 48px;
+      }
+      &:hover{
+
+      }
+   }
+}
+
+#win.fullscreen{
+   background-color: #01FF70;
+   .reset-button{
+      color: #01FF70;
+   }
+}
+
+#refresh {
+   position:fixed;
+   top:0;
+   left:0;
+   cursor: pointer;
+   padding: 5px 16px;
+}
+
+// http://stackoverflow.com/a/34379054
+.fa.fa-refresh:hover {
+     transform: rotate(180deg);
+}
+.fa.fa-refresh {
+     transition: transform 0.5s ease 0s;
+}
+
+#return-icon {
+   display:inline-block;
+   position:relative;
+   top: -60px;
+   left: 62%;
+   margin: 0 auto;
+
+   opacity:0;
+   //height: 0;
+   transition: opacity 100ms;
+
+}
+#return-icon.prompt{
+   opacity: 1;
+}
